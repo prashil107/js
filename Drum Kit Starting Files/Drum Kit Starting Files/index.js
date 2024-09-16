@@ -4,12 +4,14 @@ for (var i = 0; i < document.querySelectorAll(".drum").length; i++){
     document.querySelectorAll(".drum")[i].addEventListener("click", function(){;
     var buttonInnerHTML = this.innerHTML;
     makeSound(buttonInnerHTML);
+    buttonAnimation(buttonInnerHTML);//to see the click animation
 })};
 
 
 // for keyboard presses
 document.addEventListener("keydown", function(event){
-    makeSound(event.key);//event.key wou;d return the key pressed in the keyboard
+    makeSound(event.key);//event.key would return the key pressed in the keyboard
+    buttonAnimation(event.key);//to see the key press animation
 });
 
 
@@ -49,3 +51,10 @@ function makeSound(key){
     }
 }
 
+function buttonAnimation(currentKey){//current key would be a single character
+    var activeButton = document.querySelector("."+currentKey);// to select as a class
+    activeButton.classList.add("pressed");
+    setTimeout(function(){//to revert back to original form after the click
+        activeButton.classList.remove("pressed");
+    }, 100);
+}
